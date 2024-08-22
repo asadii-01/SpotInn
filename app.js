@@ -5,6 +5,8 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
+const session = require("express-session");
+const flash = require("connect-flash");
 
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
@@ -27,10 +29,30 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 app.engine("ejs", ejsMate);
 
+const sessionOptions = {
+  secret: "secret",
+  resave: false,
+  saveUninitialized: true,
+  cookies: {
+    expires: Date.now() + 24 * 60 * 60 * 1000,
+    maxAge: 24 * 60 * 60 * 1000, // 1 day
+    http: true,
+  },
+};
+
 // Home Route
 app.get("/", (req, res) => {
   res.send("Root is working");
 });
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use((req,res,next)=>{
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+})
 
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
