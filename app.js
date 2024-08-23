@@ -46,7 +46,7 @@ const sessionOptions = {
 
 // Home Route
 app.get("/", (req, res) => {
-  res.send("Root is working");
+  res.send("Home page is under construction for now");
 });
 
 app.use(session(sessionOptions));
@@ -61,11 +61,12 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req,res,next)=>{
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
   next();
 })
 
 app.use("/listings", listingRouter);
-app.use("/listingRouter/:id/reviews", reviewRouter);
+app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
 // For all remaining routes

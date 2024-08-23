@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/user.js");
 const wrapAsync = require("../utils/wrapAsync.js");
 const passport = require("passport");
+const { saveRedirectUrl } = require("../middleware.js");
 
 router.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
@@ -15,8 +16,14 @@ router.post(
       const { username, email, password } = req.body;
       const newUser = new User({ username, email });
       const registeredUser = await User.register(newUser, password);
-      req.flash("success", "SignedUp Successfully!!");
-      res.redirect("/listings");
+      req.login(registeredUser, (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          req.flash("success", "SignedUp Successfully!!");
+          res.redirect("/listings");
+        }
+      });
     } catch (e) {
       req.flash("error", e.message);
       res.redirect("/signup");
@@ -30,13 +37,15 @@ router.get("/login", (req, res) => {
 
 router.post(
   "/login",
+  saveRedirectUrl,
   passport.authenticate("local", {
     failureRedirect: "/login",
     failureFlash: true,
   }),
   wrapAsync(async (req, res) => {
     req.flash("success", "Welcome back to SpotInn!");
-    res.redirect("/listings");
+    let redirectUrl = res.locals.redirectUrl || "/listings";
+    res.redirect(redirectUrl);
   })
 );
 
