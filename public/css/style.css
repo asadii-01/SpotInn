@@ -9,21 +9,6 @@ body {
   flex: 1;
 }
 
-/* Navbar */
-.navbar {
-  height: 5rem;
-  background-color: white;
-}
-
-.fa-compass {
-  color: #fe422d;
-  font-size: 2rem;
-}
-
-/* .nav-link {
-  color: #222 !important;
-} */
-
 /* Footer */
 .f-info-links a {
   text-decoration: none;

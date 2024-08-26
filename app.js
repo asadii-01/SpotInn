@@ -48,11 +48,6 @@ const sessionOptions = {
   },
 };
 
-// Home Route
-app.get("/", (req, res) => {
-  res.send("Home page is under construction for now");
-});
-
 app.use(session(sessionOptions));
 app.use(flash());
 
@@ -68,6 +63,11 @@ app.use((req,res,next)=>{
   res.locals.currUser = req.user;
   next();
 })
+
+// Home Route
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
