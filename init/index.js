@@ -8,8 +8,10 @@ main()
   })
   .catch((err) => console.log(err));
 
+const dbUrl = process.env.ATLASDB_URL;
+
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/SpotInn");
+  await mongoose.connect(dbUrl);
 }
 
 const initDB = async () => {
