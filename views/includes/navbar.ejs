@@ -1,22 +1,29 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="/listings"
       ><i class="fa-regular fa-compass"></i
-    ></a>
+      ><a class="nav-link me-2" href="/listings"><b>SpotInn</b></a></a
+    >
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
+      data-bs-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="/listings"
-          >Explore</a
-        >
-      </div>
+    
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/listings"
+            >Explore</a
+          >
+        </li>
+      </ul>
 
       <div class="navbar-nav ms-auto">
         <form class="d-flex" role="search">
@@ -25,27 +32,38 @@
             type="search"
             placeholder="Search  destinations"
           />
-          <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          <button class="btn btn-search" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>Search
+          </button>
         </form>
       </div>
 
-      <div class="navbar-nav ms-auto">
-        <a class="nav-link active" aria-current="page" href="/listings/new"
-          >List your place</a
-        >
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/listings/new"
+            >List your place</a
+          >
+        </li>
+
         <% if(!currUser) { %>
-        <a class="nav-link active" aria-current="page" href="/signup"
-          ><b>SignUp</b></a
-        >
-        <a class="nav-link active" aria-current="page" href="/login"
-          ><b>LogIn</b></a
-        >
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/signup"
+            ><b>SignUp</b></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/login"
+            ><b>LogIn</b></a
+          >
+        </li>
         <% }else if(currUser) { %>
-        <a class="nav-link active" aria-current="page" href="/logout"
-          ><b>LogOut</b></a
-        >
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/logout"
+            ><b>LogOut</b></a
+          >
+        </li>
         <% } %>
-      </div>
+      </ul>
     </div>
   </div>
 </nav>
