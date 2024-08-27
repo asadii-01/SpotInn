@@ -3,7 +3,7 @@
   height: 5rem;
 }
 
-.collapse{
+.collapse {
   background-color: rgb(248, 249, 250) !important;
   z-index: 99 !important;
 }
@@ -40,16 +40,20 @@
 
 /* Filters */
 #filters {
+  margin-left: 2rem;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
+  overflow-x: auto;
+  padding: 10px;
 }
 
 .filter {
   text-align: center;
-  margin-right: 1.5rem;
-  margin-top: 2rem;
+  margin-right: 1.75rem;
+  margin-top: 1rem;
   opacity: 0.7;
+  flex-shrink: 0;
 }
 
 .filter:hover {
@@ -67,11 +71,47 @@
 }
 
 .tax-toggle {
-  border: 1px, solid, black;
+  border: 1px solid black;
   border-radius: 1rem;
-  height: 3.25rem;
-  padding: 1rem;
-  margin-left: 5rem;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin-left: 6rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  background-color: #fff;
+  position: relative;
+}
+
+.tax-toggle .form-check-input {
+  margin: 0;
+}
+
+.tax-toggle .form-check-label {
+  font-size: 0.75rem;
+  color: #333;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 600px) {
+  #filters {
+    margin-left: 0;
+  }
+
+  .filter p {
+    font-size: 0.7rem;
+  }
+
+  .tax-toggle {
+    margin-left: 0;
+    margin-top: 1rem;
+    padding: 0.5rem;
+  }
+
+  .tax-toggle .form-check-label {
+    font-size: 0.7rem;
+  }
 }
