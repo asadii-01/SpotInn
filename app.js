@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV != "production"){
+if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
 }
 
@@ -45,12 +45,12 @@ const store = MongoStore.create({
   crypto: {
     secret: process.env.SECRET,
   },
-  touchAfter: 24*3600,
+  touchAfter: 24 * 3600,
 });
 
-store.on("error",()=>{
-  console.log("session store error",err);
-})
+store.on("error", () => {
+  console.log("session store error", err);
+});
 
 const sessionOptions = {
   store,
@@ -73,12 +73,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
   next();
-})
+});
 
 // Home Route
 app.get("/", (req, res) => {
